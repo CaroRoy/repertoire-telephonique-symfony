@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Créer un contact{% endblock %}
+
+{% block body %}
+
+    <div class="container pt-5 pb-5">
+        <div class="row">
+
+            {% for rubrique, messages in app.flashes %}
+                <div class="alert alert-{{ rubrique }}">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <div class="col-12">
+                <h1>Créer un contact</h1>
+            </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        Formulaire de création
+                    </div>
+                    <div class="card-body">
+                        {# {{ form(form) }} #}
+                        {{ form_start(form) }}
+                            
+                            {# {{ form_widget(form) }} #} {# Pour afficher directement l'ensemble des inputs #}
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    {{ form_row(form.name) }}
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    {{ form_row(form.firstName) }}
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    {{ form_row(form.phoneNumber) }}
+                                </div>
+                            </div>
+                            <button class="btn btn-primary mt-3" type="submit">Enregistrer</button>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

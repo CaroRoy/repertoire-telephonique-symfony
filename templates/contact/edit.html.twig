@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modifier un contact{% endblock %}
+
+{% block body %}
+
+    <div class="container pt-5 pb-5">
+        <div class="row">
+
+            {% include "shared/_message_flash.html.twig" %}
+
+            <div class="col-12">
+                <h1>Modifier un contact</h1>
+            </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        Formulaire de modification
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(form) }}
+                            
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    {{ form_row(form.name) }}
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    {{ form_row(form.firstName) }}
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    {{ form_row(form.phoneNumber) }}
+                                </div>
+                            </div>
+                            <button class="btn btn-primary mt-3">Enregistrer</button>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

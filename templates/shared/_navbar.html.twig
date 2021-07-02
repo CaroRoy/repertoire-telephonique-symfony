@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ path('home') }}">Répertoire téléphonique</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      
+      {% if app.user %}
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('contact_list') }}">Liste</a>
+          </li>
+          
+          {% if app.user.roles[0] is same as "ROLE_ADMIN" %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('contact_create') }}">Créer un contact</a>
+            </li>
+          {% endif %}
+
+        </ul>
+      {% endif %}
+
+      <ul class="navbar-nav ms-auto">
+
+        {% if app.user %}
+          <li class="nav-item align-self-center">
+            <p style="color:white; height:100%; margin-bottom:0;">Bonjour {{app.user.firstName}}</p>
+          </li>
+          <li class="nav-item">
+            <a href="{{ path('app_logout') }}" class="nav-link">Se déconnecter</a>
+          </li>
+
+        {% else %}
+          <li class="nav-item">
+            <a href="{{ path('app_login') }}" class="nav-link">Se connecter</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ path('app_register') }}" class="nav-link">Créer un compte</a>
+          </li>
+
+        {% endif %}
+      </ul>  
+      
+    </div>
+  </div>
+</nav>

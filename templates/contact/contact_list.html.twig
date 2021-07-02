@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Répertoire téléphonique{% endblock %}
+
+{% block body %}
+
+    <div class="container pt-5 pb-5">
+        <div class="row">
+
+            {% include "shared/_message_flash.html.twig" %}
+
+            <div class="col-12">
+                <h1>Les contacts</h1>
+            </div>
+            {% for contact in contacts %}
+                <div class="col-sm-12 col-md-6 col-lg-6 mt-3">
+                    <div class="card shadow rounded" style="background-color:#f5f5f5;">
+                        <div class="row">
+                            <div class="col-6">
+                                <img src="https://i.pravatar.cc" alt="image-article" class="rounded p-4" width="200px">
+                            </div>                        
+                            <div class="col-6">
+                                <div class="card-header" style="background:none;">
+                                    <h2>{{ contact.firstName }} {{ contact.name }}</h2>
+                                </div>
+                                <div class="card-footer" style="background:none; border: none;">
+                                    <a href="{{ path('contact_show', {'id' : contact.id}) }}" class="btn btn-dark" style="width:100%;"><i class="fas fa-eye"> Détails du contact</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}

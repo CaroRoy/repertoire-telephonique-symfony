@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Contact : {{ contact.firstName }} {{ contact.name }}{% endblock %}
+
+{% block body %}
+    <div class="container pt-5 pb-5 d-flex flex-column align-items-center">
+
+        {% for rubrique, messages in app.flashes %}
+            <div class="alert alert-{{ rubrique }}">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+            </div>
+        {% endfor %}
+ 
+        <div class="card shadow rounded w-50" style="background-color:#f5f5f5;">
+            <div class="row">
+                <div class="col-6">                
+                    <img src="https://i.pravatar.cc" alt="image-article" class="rounded p-4" height="300px">
+                </div>
+                <div class="col-6 ms-auto  pt-4">
+                    <div class="card-head">
+                        <h3 class="text-center">{{ contact.firstName }} {{ contact.name }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Numéro de téléphone : {{ contact.phoneNumber }}</p>
+                    </div>
+                    <div class="card-footer" style="background:none; border: none;">
+                        <p>Enregistré le : {{ contact.createdAt | date('d-m-Y') }}</p>
+
+                        {% if app.user %}
+
+                            {% if (app.user.roles[0] is same as "ROLE_ADMIN") %}
+                                <a href="{{ path('contact_edit', {'id' : contact.id}) }}" class="btn btn-primary w-100">Modifier les informations</a>
+                                <a href="{{ path('contact_remove', {'id' : contact.id})}}" class="btn btn-danger w-100 mt-3">Supprimer ce contact</a>
+                            {% endif %}
+
+                        {% endif %}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="{{path('contact_list')}}" class="btn btn-link">Retour</a>
+    </div>
+{% endblock %}

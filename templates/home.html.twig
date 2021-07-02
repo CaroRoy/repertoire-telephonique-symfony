@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Répertoire téléphonique{% endblock %}
+
+{% block body %}
+
+    <div class="container pt-5 pb-5">
+        <div class="row">
+
+            {% for rubrique, messages in app.flashes %}
+                <div class="alert alert-{{ rubrique }}">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <div class="col-12">
+                <h1>Bienvenue sur le répertoire téléphonique Symfony</h1>
+            </div>
+            <div class="col-12">
+                <a href="{{ path('app_register') }}" class="btn btn-primary">Créer un compte</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
